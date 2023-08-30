@@ -1,12 +1,8 @@
 package com.potrt.expenses;
 
-import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.potrt.expenses.entities.Person;
@@ -18,6 +14,8 @@ public class App
         // Create Configuration
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
+        configuration.setProperty("hibernate.connection.username", System.getenv("dbUsername"));
+        configuration.setProperty("hibernate.connection.password", System.getenv("dbPassword"));
         configuration.addAnnotatedClass(Person.class);
  
         // Create Session Factory
